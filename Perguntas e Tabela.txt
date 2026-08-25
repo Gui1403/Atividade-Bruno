@@ -1,0 +1,24 @@
+VLAN	| LAB  	| SUB-REDE 	  | Gateray
+10   	| lab 1 | 192.168.10.0/24 | 192.168.10.1
+20   	| lab 2 | 192.168.20.0/24 | 192.168.20.1			
+40   	| lab 4 | 192.168.40.0/24 | 192.168.40.1
+50   	| lab 5 | 192.168.50.0/24 | 192.168.50.1
+
+
+QUESTÃO 1
+Link lab <-> central: é uma acces link. Cada switch de lab pertence a única VLAN, então esse link só precisa transportar tráfego daquela VLAN específica
+Link central <-> roteador: é uma trunk, pois o roteador precisa receber e enviar pacotes de todas as 4 VLAN's para realizar o roteameneto inter-VLAN. Cada sub-inteface no roteador atende uma VLAN diferente.
+
+QUESTÃO 2
+O switch de laboratório passaria a receber tráfego de outras VLAN's, poluindo sua tabela MAC, consumindo CPU e gerando tráfego desnecessário
+Um usuário mal intencionado no lab 1 poderia forjar pacotes com tag de outras VLAN e acessar dados dos Lab 2, 4 ou 5,  quebrando o isolamento entre os laboratórios. Além disso os broadcasts de outras VLANs seriam entregues indevidamente no Lab 1.
+
+QUESTÃO 3
+O número da sub-interface e o comando 'encapsulation dot1Q 10' dizem ao roteador: "todo pacote que chegar com a tag 10 será processado por esta sub-inteface"
+Se não bater os pacotes com tag 10 chegam em sub-interface configurado para 20, ou seja, são descartadas. Resultado: a comunicação inter-VLAN falha.
+
+QUESTÃO 4
+PC1 -> Switch Lab 1 (tag10) -> Swicth Central (tag10) -> Roteador (entra na .10, roteia, sai na .50 com tag50) -> Swicth Central (tag50) -> Swicth Lab 5 (tag50) -> PC5
+
+QUESTÃO 5
+Isolamento físico de falhas, mais segurança e menor latência
