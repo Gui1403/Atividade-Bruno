@@ -20,9 +20,12 @@ network 200.200.200.0
 enable
 configure terminal
 interface s0/0/0
-ip adress 200.200.200.2 255.255.255.252
+ip adress 200.200.200.1 255.255.255.252
 no shutdown
-interface g0/0/1
+interface s0/0/1
+ip adress 200.200.200.5 255.255.255.252
+no shutdown
+interface g0/1
 ip adress 200.200.200.5 255.255.255.252
 no shutdown
 interface g0/0
