@@ -15,3 +15,21 @@ router rip
 version 2
 network 172.16.0.0
 network 200.200.200.0
+
+### RIP Router - SP
+enable
+configure terminal
+interface s0/0/0
+ip adress 200.200.200.2 255.255.255.252
+no shutdown
+interface g0/0/1
+ip adress 200.200.200.5 255.255.255.252
+no shutdown
+interface g0/0
+ip adress 172.16.40.254 255.255.255.0
+no shutdown
+exit
+router rip
+version 2
+network 172.16.0.0
+network 200.200.200.0
